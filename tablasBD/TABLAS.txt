@@ -1,0 +1,52 @@
+-- Insertar datos en Categorías
+CREATE DATABASE gestion_articulos;
+
+USE gestion_articulos;
+
+-- Tabla de Categorías
+CREATE TABLE categorias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL
+);
+
+-- Tabla de Presentaciones
+CREATE TABLE presentaciones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL
+);
+
+-- Tabla de Artículos
+CREATE TABLE articulos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    imagen VARCHAR(200),
+    idcategoria INT NOT NULL,
+    idpresentacion INT NOT NULL,
+    FOREIGN KEY (idcategoria) REFERENCES categorias(id) ON DELETE CASCADE,
+    FOREIGN KEY (idpresentacion) REFERENCES presentaciones(id) ON DELETE CASCADE
+);
+
+
+
+INSERT INTO categorias (nombre) VALUES 
+('Bebidas Alcohólicas'),
+('Bebidas No Alcohólicas'),
+('Snacks'),
+('Postres'),
+('Aguas y Jugos');
+
+-- Insertar datos en Presentaciones
+INSERT INTO presentaciones (nombre) VALUES
+('Lata'),
+('Botella'),
+('Pack (6 unidades)'),
+('Caja (12 unidades)'),
+('Individual');
+
+-- Insertar datos en Artículos
+INSERT INTO articulos (nombre, imagen, idcategoria, idpresentacion) VALUES
+('Paceña', 'paceña.jpg', 1, 2),
+('Coca-Cola', 'coca_cola.jpg', 2, 2),
+('Papas Fritas', 'papas_fritas.jpg', 3, 5),
+('Agua Cielo', 'agua_cielo.jpg', 5, 1),
+('Budweiser', 'budweiser.jpg', 1, 3);
